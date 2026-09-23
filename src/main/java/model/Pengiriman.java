@@ -41,27 +41,27 @@ public class Pengiriman {
         this.idBarang = idBarang;
     }
 
-    public String KotaAsal() {
+    public String getKotaAsal() {
         return kotaAsal;
     }
 
-    public void KotaAsal(String kotaAsal) {
+    public void setKotaAsal(String kotaAsal) {
         this.kotaAsal = kotaAsal;
     }
 
-    public String KotaTujuan() {
+    public String getKotaTujuan() {
         return kotaTujuan;
     }
 
-    public void KotaTujuan(String kotaTujuan) {
+    public void setKotaTujuan(String kotaTujuan) {
         this.kotaTujuan = kotaTujuan;
     }
 
-    public String StatusPengiriman() {
+    public String getStatusPengiriman() {
         return statusPengiriman;
     }
 
-    public void StatusPengiriman(String statusPengiriman) {
+    public void setStatusPengiriman(String statusPengiriman) {
         this.statusPengiriman = statusPengiriman;
     }
 }

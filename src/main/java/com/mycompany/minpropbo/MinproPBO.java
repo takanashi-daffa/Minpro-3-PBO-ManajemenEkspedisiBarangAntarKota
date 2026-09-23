@@ -5,17 +5,33 @@ import java.util.Scanner;
 import model.Pelanggan;
 import model.Barang;
 import model.Pengiriman;
+import model.PengirimanDarat;
+import model.PengirimanUdara;
+import view.Menu;
+
+
 
 public class MinproPBO {
 
     static Scanner scanner = new Scanner(System.in);
-
     static ArrayList<Pelanggan> daftarPelanggan = new ArrayList<>();
     static ArrayList<Barang> daftarBarang = new ArrayList<>();
     static ArrayList<Pengiriman> daftarPengiriman = new ArrayList<>();
 
     public static void main(String[] args) {
 
+    daftarPelanggan.add(new Pelanggan(
+            "PPU1024", "A", "081234567890", "Penajam"));
+
+    daftarBarang.add(new Barang(
+            "BRG2048", "B", "Elektronik", 2.5));
+
+    daftarPengiriman.add(new PengirimanDarat(
+        "KRM3072", "PPU1024", "BRG2048",
+        "Penajam", "Balikpapan", "Diproses"));
+    
+    Menu menu = new Menu();
+        
         int pilihan;
 
         do {
@@ -28,6 +44,11 @@ public class MinproPBO {
             System.out.print("Pilih menu (1-5): ");
             pilihan = scanner.nextInt();
             scanner.nextLine();
+
+            if (pilihan < 1 || pilihan > 5) {
+                System.out.println("Pilihan tidak valid!");
+                continue;
+            }
 
             switch (pilihan) {
                 case 1:
@@ -104,6 +125,11 @@ public class MinproPBO {
                 double berat = scanner.nextDouble();
                 scanner.nextLine();
 
+                if (berat <= 0) {
+                    System.out.println("Berat harus lebih dari 0!");
+                    return;
+                }
+
                 daftarBarang.add(new Barang(
                         idBarang, namaBarang, jenisBarang, berat));
 
@@ -111,6 +137,17 @@ public class MinproPBO {
                 break;
 
             case 3:
+                System.out.println("1. Pengiriman Darat");
+                System.out.println("2. Pengiriman Udara");
+                System.out.print("Pilih Jenis Pengiriman: ");
+                int jenisPengiriman = scanner.nextInt();
+                scanner.nextLine();
+
+                if (jenisPengiriman < 1 || jenisPengiriman > 2) {
+                    System.out.println("Pilihan tidak valid!");
+                    return;
+                }
+                
                 System.out.print("ID Pengiriman: ");
                 String idPengiriman = scanner.nextLine();
 
@@ -129,13 +166,23 @@ public class MinproPBO {
                 System.out.print("Status Pengiriman: ");
                 String statusPengiriman = scanner.nextLine();
 
-                daftarPengiriman.add(new Pengiriman(
+                if (jenisPengiriman == 1) {
+                daftarPengiriman.add(new PengirimanDarat(
                         idPengiriman,
                         idPelangganKirim,
                         idBarangKirim,
                         kotaAsal,
                         kotaTujuan,
                         statusPengiriman));
+            } else {
+                daftarPengiriman.add(new PengirimanUdara(
+                        idPengiriman,
+                        idPelangganKirim,
+                        idBarangKirim,
+                        kotaAsal,
+                        kotaTujuan,
+                        statusPengiriman));
+            }
 
                 System.out.println("Data pengiriman berhasil ditambahkan.");
                 break;
@@ -182,9 +229,9 @@ public class MinproPBO {
                     System.out.println("ID Pengiriman: " + p.getIdPengiriman());
                     System.out.println("ID Pelanggan: " + p.getIdPelanggan());
                     System.out.println("ID Barang: " + p.getIdBarang());
-                    System.out.println("Kota Asal: " + p.KotaAsal());
-                    System.out.println("Kota Tujuan: " + p.KotaTujuan());
-                    System.out.println("Status Pengiriman: " + p.StatusPengiriman());
+                    System.out.println("Kota Asal: " + p.getKotaAsal());
+                    System.out.println("Kota Tujuan: " + p.getKotaTujuan());
+                    System.out.println("Status Pengiriman: " + p.getStatusPengiriman());
                     System.out.println();
                 }
                 break;
@@ -241,8 +288,15 @@ public class MinproPBO {
                     b.setJenisBarang(scanner.nextLine());
 
                     System.out.print("Berat (ton): ");
-                    b.setBerat(scanner.nextDouble());
+                    double berat = scanner.nextDouble();
                     scanner.nextLine();
+
+                    if (berat <= 0) {
+                        System.out.println("Berat harus lebih dari 0!");
+                        return;
+                    }
+
+                    b.setBerat(berat);
 
                     System.out.println("Data barang berhasil diubah.");
                     return;
@@ -258,13 +312,13 @@ public class MinproPBO {
                 if (p.getIdPengiriman().equals(id)) {
 
                     System.out.print("Kota Asal: ");
-                    p.KotaAsal(scanner.nextLine());
+                    p.setKotaAsal(scanner.nextLine());
 
                     System.out.print("Kota Tujuan: ");
-                    p.KotaTujuan(scanner.nextLine());
+                    p.setKotaTujuan(scanner.nextLine());
 
                     System.out.print("Status Pengiriman: ");
-                    p.StatusPengiriman(scanner.nextLine());
+                    p.setStatusPengiriman(scanner.nextLine());
 
                     System.out.println("Data pengiriman berhasil diubah.");
                     return;

@@ -1,6 +1,7 @@
 package model;
 
 public class Pelanggan {
+
     private String idPelanggan;
     private String nama;
     private String noTelepon;

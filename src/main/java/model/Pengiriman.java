@@ -1,6 +1,7 @@
 package model;
 
 public class Pengiriman {
+
     private String idPengiriman;
     private String idPelanggan;
     private String idBarang;
@@ -8,7 +9,9 @@ public class Pengiriman {
     private String kotaTujuan;
     private String statusPengiriman;
 
-    public Pengiriman(String idPengiriman, String idPelanggan, String idBarang, String kotaAsal, String kotaTujuan, String statusPengiriman) {
+    public Pengiriman(String idPengiriman, String idPelanggan, String idBarang,
+            String kotaAsal, String kotaTujuan, String statusPengiriman) {
+
         this.idPengiriman = idPengiriman;
         this.idPelanggan = idPelanggan;
         this.idBarang = idBarang;

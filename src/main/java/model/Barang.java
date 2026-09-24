@@ -1,6 +1,7 @@
 package model;
 
 public class Barang {
+
     private String idBarang;
     private String namaBarang;
     private String jenisBarang;

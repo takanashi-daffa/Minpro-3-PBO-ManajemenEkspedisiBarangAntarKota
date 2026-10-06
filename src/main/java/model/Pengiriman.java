@@ -1,6 +1,6 @@
 package model;
 
-public class Pengiriman {
+public abstract class Pengiriman {
 
     private String idPengiriman;
     private String idPelanggan;
@@ -67,4 +67,6 @@ public class Pengiriman {
     public void setStatusPengiriman(String statusPengiriman) {
         this.statusPengiriman = statusPengiriman;
     }
+
+    public abstract void tampilkanJenisPengiriman();
 }

@@ -1,4 +1,4 @@
-package com.mycompany.minpropbo;
+package main;
 
 import controller.PengelolaEkspedisi;
 
